@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <!-- Progress Bar -->
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressStep">Step 1</span> of <span id="totalSteps">4</span>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="multiStepForm" novalidate>
+                <!-- Step 1: Personal Information -->
+                <div class="form-step active" data-step="1">
+                    <h2>Personal Information</h2>
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input 
+                            type="text" 
+                            id="firstName" 
+                            name="firstName" 
+                            placeholder="Enter your first name"
+                            required
+                        >
+                        <span class="error-message" id="firstNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input 
+                            type="text" 
+                            id="lastName" 
+                            name="lastName" 
+                            placeholder="Enter your last name"
+                            required
+                        >
+                        <span class="error-message" id="lastNameError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email"
+                            required
+                        >
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+                </div>
+
+                <!-- Step 2: Contact Details -->
+                <div class="form-step" data-step="2">
+                    <h2>Contact Details</h2>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            placeholder="Enter your phone number"
+                            required
+                        >
+                        <span class="error-message" id="phoneError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address *</label>
+                        <input 
+                            type="text" 
+                            id="address" 
+                            name="address" 
+                            placeholder="Enter your address"
+                            required
+                        >
+                        <span class="error-message" id="addressError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <input 
+                            type="text" 
+                            id="city" 
+                            name="city" 
+                            placeholder="Enter your city"
+                            required
+                        >
+                        <span class="error-message" id="cityError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="zipCode">ZIP Code *</label>
+                        <input 
+                            type="text" 
+                            id="zipCode" 
+                            name="zipCode" 
+                            placeholder="Enter your ZIP code"
+                            required
+                        >
+                        <span class="error-message" id="zipCodeError"></span>
+                    </div>
+                </div>
+
+                <!-- Step 3: Preferences -->
+                <div class="form-step" data-step="3">
+                    <h2>Preferences</h2>
+                    <div class="form-group">
+                        <label for="country">Country *</label>
+                        <select id="country" name="country" required>
+                            <option value="">Select a country</option>
+                            <option value="usa">United States</option>
+                            <option value="canada">Canada</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="australia">Australia</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-message" id="countryError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Interests *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    name="interests" 
+                                    value="technology"
+                                >
+                                <span>Technology</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    name="interests" 
+                                    value="sports"
+                                >
+                                <span>Sports</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    name="interests" 
+                                    value="music"
+                                >
+                                <span>Music</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input 
+                                    type="checkbox" 
+                                    name="interests" 
+                                    value="travel"
+                                >
+                                <span>Travel</span>
+                            </label>
+                        </div>
+                        <span class="error-message" id="interestsError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="newsletter" 
+                                name="newsletter"
+                            >
+                            <span>Subscribe to newsletter</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Step 4: Review & Submit -->
+                <div class="form-step" data-step="4">
+                    <h2>Review Your Information</h2>
+                    <div id="summaryContainer" class="summary-container">
+                        <!-- Summary will be populated by JavaScript -->
+                    </div>
+                    <div class="agreement-section">
+                        <label class="checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="agree" 
+                                name="agree"
+                                required
+                            >
+                            <span>I agree to the terms and conditions *</span>
+                        </label>
+                        <span class="error-message" id="agreeError"></span>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button 
+                        type="button" 
+                        id="prevBtn" 
+                        class="btn btn-secondary"
+                        style="display: none;"
+                    >
+                        ← Previous
+                    </button>
+                    <button 
+                        type="button" 
+                        id="nextBtn" 
+                        class="btn btn-primary"
+                    >
+                        Next →
+                    </button>
+                    <button 
+                        type="submit" 
+                        id="submitBtn" 
+                        class="btn btn-success"
+                        style="display: none;"
+                    >
+                        Submit Form
+                    </button>
+                </div>
+
+                <!-- Autosave Status -->
+                <div class="autosave-status" id="autosaveStatus">
+                    <span class="status-icon">💾</span>
+                    <span class="status-text">All changes saved</span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage" style="display: none;">
+            <div class="success-content">
+                <div class="success-icon">✓</div>
+                <h2>Form Submitted Successfully!</h2>
+                <p>Thank you for completing the form. We'll be in touch shortly.</p>
+                <button type="button" class="btn btn-primary" id="resetBtn">Start Over</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
